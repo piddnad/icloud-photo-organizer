@@ -1,4 +1,5 @@
-# Coded by Piddnad 2019/8/19
+# Created by Piddnad on 2019/8/19
+# Edited on 2022/2/4
 # Reference: http://www.leancrew.com/all-this/2013/10/photo-management-via-the-finder/
 
 import os, shutil
@@ -8,13 +9,14 @@ import datetime as dt
 from datetime import datetime
 import hachoir.parser
 import hachoir.metadata
+from tqdm import tqdm
 
 
 #################### Configuration #########################
 
 # 照片文件的初始位置和整理后位置
-source_dir = os.environ['HOME'] + '/Pictures/test'
-dest_dir = os.environ['HOME'] + '/Pictures/iPhone'
+source_dir = os.environ['HOME'] + '/Pictures/iPhone_export'
+dest_dir = os.environ['HOME'] + '/Pictures/iPhone_organized'
 
 # 照片和其他文件格式
 photo_fmt = ['jpg', 'JPG', 'HEIC', 'PNG']
@@ -53,7 +55,7 @@ if __name__ == "__main__":
     additions = [ x for x in files if x.split('.')[1] in addition_fmt]
 
     #复制照片到年月目录下并重命名照片文件为拍摄日期，如果有多个照片有相同拍摄日期，在文件名加'a','b',...后缀
-    for photo in photos:
+    for photo in tqdm(photos):
         original = source_dir + '/' + photo
         suffix = 'a'
         try:

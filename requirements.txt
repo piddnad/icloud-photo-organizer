@@ -1,1 +1,2 @@
-hachoir==3.0a5
+hachoir
+tqdm
